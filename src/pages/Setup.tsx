@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronRight, X } from "lucide-react";
+import { X, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -39,10 +39,6 @@ const Setup = () => {
     navigate("/dashboard");
   };
 
-  const handleClose = () => {
-    window.close();
-  };
-
   const handleOpenDialog = () => {
     setIsDialogOpen(true);
   };
@@ -67,28 +63,36 @@ const Setup = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      {/* Header */}
-      <header className="bg-blue-600 text-white px-6 py-3 flex items-center justify-between">
-        <span className="text-sm font-medium">Setup | Seleção de Modelo</span>
+    <div className="min-h-screen bg-background flex flex-col">
+      {/* Top Right Buttons */}
+      <div className="absolute top-6 right-6 flex items-center gap-3">
         <button
-          onClick={handleClose}
-          className="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+          type="button"
+          className="w-10 h-10 flex items-center justify-center rounded-full bg-secondary hover:bg-muted transition-colors border border-border"
+          aria-label="Configurações"
         >
-          <X className="w-5 h-5" />
+          <Settings className="w-5 h-5 text-foreground" />
         </button>
-      </header>
+        <button
+          type="button"
+          onClick={() => window.close()}
+          className="w-10 h-10 flex items-center justify-center rounded-full bg-destructive/20 hover:bg-destructive/30 transition-colors"
+          aria-label="Fechar"
+        >
+          <X className="w-5 h-5 text-destructive" />
+        </button>
+      </div>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col items-center justify-center px-4 -mt-16">
-        <h1 className="text-blue-600 text-lg font-medium mb-8">
+      <main className="flex-1 flex flex-col items-center justify-center px-4">
+        <h1 className="text-foreground text-4xl font-semibold mb-16">
           Selecione o modelo do Ar-Condicionado
         </h1>
 
-        <div className="w-full max-w-md space-y-4">
+        <div className="w-full max-w-3xl space-y-10">
           {/* Model Selection */}
           <Select value={selectedModel} onValueChange={setSelectedModel}>
-            <SelectTrigger className="w-full h-12 px-4 text-blue-600 font-medium border-gray-200 bg-white shadow-sm">
+            <SelectTrigger className="w-full h-20 px-8 text-foreground text-2xl font-medium border-border bg-card shadow-lg rounded-xl">
               <SelectValue placeholder="Selecione um modelo" />
             </SelectTrigger>
             <SelectContent>
@@ -101,17 +105,17 @@ const Setup = () => {
           </Select>
 
           {/* Buttons */}
-          <div className="flex gap-3 pt-2">
+          <div className="flex gap-5 pt-5">
             <Button
               variant="default"
               onClick={handleOpenDialog}
-              className="flex-1 h-10 bg-blue-700 hover:bg-blue-800 text-white font-medium"
+              className="flex-1 h-20 bg-primary hover:bg-primary/90 text-primary-foreground text-2xl font-medium rounded-xl"
             >
               Cadastrar Modelo
             </Button>
             <Button
               onClick={handleStart}
-              className="flex-1 h-10 bg-green-600 hover:bg-green-700 text-white font-medium"
+              className="flex-1 h-20 bg-success hover:bg-success/90 text-success-foreground text-2xl font-medium rounded-xl"
             >
               Iniciar
             </Button>
@@ -123,7 +127,7 @@ const Setup = () => {
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-blue-600">Cadastrar Novo Modelo</DialogTitle>
+            <DialogTitle className="text-foreground">Cadastrar Novo Modelo</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
@@ -160,7 +164,7 @@ const Setup = () => {
             </Button>
             <Button
               onClick={handleSaveModel}
-              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+              className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
             >
               Salvar
             </Button>

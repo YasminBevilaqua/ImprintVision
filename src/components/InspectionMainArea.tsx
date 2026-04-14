@@ -6,7 +6,7 @@ const logos = [
     content: (
       <div className="flex h-full items-center justify-center">
         <span
-          className="text-3xl font-extrabold tracking-widest text-[#0056b3] sm:text-4xl md:text-5xl"
+          className="text-3xl font-extrabold tracking-widest text-primary sm:text-4xl md:text-5xl"
           style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
         >
           elgin
@@ -18,10 +18,10 @@ const logos = [
     id: "roi_r32_logo",
     content: (
       <div className="relative flex h-full items-center justify-center">
-        <div className="relative flex h-28 w-28 items-center justify-center rounded-full border-[4px] border-[#0056b3] sm:h-32 sm:w-32 md:h-36 md:w-36">
-          <span className="text-2xl font-extrabold text-[#0056b3] sm:text-3xl md:text-4xl">R32</span>
+        <div className="relative flex h-28 w-28 items-center justify-center rounded-full border-[4px] border-primary sm:h-32 sm:w-32 md:h-36 md:w-36">
+          <span className="text-2xl font-extrabold text-primary sm:text-3xl md:text-4xl">R32</span>
           <svg
-            className="absolute -right-1 -top-1 h-6 w-6 text-[#00a843] sm:h-7 sm:w-7"
+            className="absolute -right-1 -top-1 h-6 w-6 text-success sm:h-7 sm:w-7"
             viewBox="0 0 24 24"
             fill="currentColor"
           >
@@ -36,7 +36,7 @@ const logos = [
     content: (
       <div className="flex h-full flex-col items-center justify-center gap-2">
         <svg
-          className="h-8 w-14 text-[#0056b3] sm:h-10 sm:w-16"
+          className="h-8 w-14 text-primary sm:h-10 sm:w-16"
           viewBox="0 0 40 24"
           fill="none"
           stroke="currentColor"
@@ -47,7 +47,7 @@ const logos = [
           <path d="M11 16 Q20 8 29 15" />
         </svg>
         <span
-          className="text-xl font-extrabold tracking-wider text-[#0056b3] sm:text-2xl md:text-3xl"
+          className="text-xl font-extrabold tracking-wider text-primary sm:text-2xl md:text-3xl"
           style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
         >
           inverter
@@ -59,27 +59,27 @@ const logos = [
 
 const InspectionMainArea = () => {
   return (
-    <div className="flex min-h-screen min-w-0 flex-1 flex-col bg-white">
-      <header className="flex shrink-0 items-center justify-between border-b border-[#d1d5db] bg-white px-5 py-3">
-        <h2 className="text-[15px] font-semibold text-[#6b7280]">
+    <div className="flex min-h-screen min-w-0 flex-1 flex-col bg-background">
+      <header className="flex shrink-0 items-center justify-between border-b border-border px-5 py-3">
+        <h2 className="text-[15px] font-semibold text-muted-foreground">
           Inspeção | Tampa Condensadora - Modelo 9/12K
         </h2>
         <button
           type="button"
-          className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0056b3] text-white shadow-sm transition-colors hover:bg-[#004494]"
+          className="flex h-9 w-9 items-center justify-center rounded-full bg-destructive text-white shadow-sm transition-colors hover:bg-destructive/90"
           aria-label="Fechar"
         >
           <X className="h-4 w-4" strokeWidth={2.5} />
         </button>
       </header>
 
-      <main className="flex min-h-0 flex-1 flex-col bg-[#f3f4f6] p-4 md:p-6">
-        <div className="flex min-h-0 flex-1 flex-col rounded-lg border border-[#d1d5db] bg-white p-6 shadow-sm md:p-10">
+      <main className="flex min-h-0 flex-1 flex-col bg-muted/50 p-4 md:p-6">
+        <div className="flex min-h-0 flex-1 flex-col rounded-xl border border-border bg-card p-6 shadow-lg md:p-10">
           <div className="flex min-h-0 flex-1 flex-wrap items-center justify-center gap-8 md:gap-12 lg:gap-16">
             {logos.map((logo) => (
               <div key={logo.id} className="flex flex-col items-center gap-2 md:gap-3">
-                <span className="font-mono text-xs font-medium text-[#dc2626] sm:text-sm">{logo.id}</span>
-                <div className="flex min-h-[min(58vh,520px)] w-[clamp(168px,22vw,260px)] items-center justify-center rounded-md border-2 border-[#ef4444] bg-white px-3 py-4 sm:min-h-[min(62vh,560px)] sm:w-[clamp(180px,24vw,280px)]">
+                <span className="font-mono text-xs font-medium text-destructive sm:text-sm">{logo.id}</span>
+                <div className="flex min-h-[min(58vh,520px)] w-[clamp(168px,22vw,260px)] items-center justify-center rounded-xl border-2 border-destructive/50 bg-card px-3 py-4 shadow-md sm:min-h-[min(62vh,560px)] sm:w-[clamp(180px,24vw,280px)]">
                   {logo.content}
                 </div>
               </div>
@@ -88,12 +88,12 @@ const InspectionMainArea = () => {
         </div>
       </main>
 
-      <footer className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-t border-[#d1d5db] bg-white px-5 py-2.5 text-[12px] text-[#6b7280]">
+      <footer className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-t border-border px-5 py-2.5 text-[12px] text-muted-foreground">
         <span>Imprint Vision - Versão 1.0.0</span>
-        <span className="hidden sm:inline">IP 192.168.0.1</span>
-        <span>Data/Hora 01/01/2026 - 00:00:00</span>
-        <span className="inline-flex items-center gap-1 text-[#6b7280]">
-          Status <span className="font-medium text-[#00a843]">Online</span>
+        <span className="hidden sm:inline font-mono">IP 192.168.0.1</span>
+        <span className="font-mono">Data/Hora 01/01/2026 - 00:00:00</span>
+        <span className="inline-flex items-center gap-1 text-muted-foreground">
+          Status <span className="font-medium text-success">Online</span>
         </span>
       </footer>
     </div>
