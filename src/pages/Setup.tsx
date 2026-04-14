@@ -65,63 +65,90 @@ const Setup = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Top Right Buttons */}
-      <div className="absolute top-6 right-6 flex items-center gap-3">
+      <div className="absolute top-6 right-6 flex items-center gap-2">
         <button
           type="button"
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-secondary hover:bg-muted transition-colors border border-border"
+          className="w-9 h-9 flex items-center justify-center rounded-lg bg-secondary/50 hover:bg-secondary transition-colors"
           aria-label="Configurações"
         >
-          <Settings className="w-5 h-5 text-foreground" />
+          <Settings className="w-4 h-4 text-muted-foreground" />
         </button>
         <button
           type="button"
           onClick={() => window.close()}
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-destructive/20 hover:bg-destructive/30 transition-colors"
+          className="w-9 h-9 flex items-center justify-center rounded-lg bg-destructive/10 hover:bg-destructive/20 transition-colors"
           aria-label="Fechar"
         >
-          <X className="w-5 h-5 text-destructive" />
+          <X className="w-4 h-4 text-destructive" />
         </button>
+      </div>
+
+      {/* Logo / Brand */}
+      <div className="absolute top-6 left-6">
+        <span className="text-sm font-semibold text-muted-foreground tracking-wide">IMPRINT VISION</span>
       </div>
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col items-center justify-center px-4">
-        <h1 className="text-foreground text-4xl font-semibold mb-16">
-          Selecione o modelo do Ar-Condicionado
-        </h1>
+        <div className="w-full max-w-2xl">
+          {/* Title */}
+          <div className="text-center mb-12">
+            <h1 className="text-foreground text-3xl md:text-4xl font-bold mb-3">
+              Seleção de Modelo
+            </h1>
+            <p className="text-muted-foreground text-lg">
+              Escolha o modelo do Ar-Condicionado para inspeção
+            </p>
+          </div>
 
-        <div className="w-full max-w-3xl space-y-10">
-          {/* Model Selection */}
-          <Select value={selectedModel} onValueChange={setSelectedModel}>
-            <SelectTrigger className="w-full h-20 px-8 text-foreground text-2xl font-medium border-border bg-card shadow-lg rounded-xl">
-              <SelectValue placeholder="Selecione um modelo" />
-            </SelectTrigger>
-            <SelectContent>
-              {models.map((model) => (
-                <SelectItem key={model.id} value={model.name}>
-                  {model.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          {/* Card Container */}
+          <div className="bg-card/80 backdrop-blur-sm rounded-2xl border border-border/50 shadow-2xl p-8 md:p-10">
+            {/* Model Selection */}
+            <div className="mb-8">
+              <label className="block text-sm font-medium text-muted-foreground mb-3 uppercase tracking-wider">
+                Modelo
+              </label>
+              <Select value={selectedModel} onValueChange={setSelectedModel}>
+                <SelectTrigger className="w-full h-16 px-6 text-foreground text-xl font-medium border-border bg-background shadow-inner rounded-xl">
+                  <SelectValue placeholder="Selecione um modelo" />
+                </SelectTrigger>
+                <SelectContent>
+                  {models.map((model) => (
+                    <SelectItem key={model.id} value={model.name}>
+                      {model.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
 
-          {/* Buttons */}
-          <div className="flex gap-5 pt-5">
-            <Button
-              variant="default"
-              onClick={handleOpenDialog}
-              className="flex-1 h-20 bg-primary hover:bg-primary/90 text-primary-foreground text-2xl font-medium rounded-xl"
-            >
-              Cadastrar Modelo
-            </Button>
-            <Button
-              onClick={handleStart}
-              className="flex-1 h-20 bg-success hover:bg-success/90 text-success-foreground text-2xl font-medium rounded-xl"
-            >
-              Iniciar
-            </Button>
+            {/* Divider */}
+            <div className="h-px bg-border/50 mb-8" />
+
+            {/* Buttons */}
+            <div className="flex gap-4">
+              <Button
+                variant="outline"
+                onClick={handleOpenDialog}
+                className="flex-1 h-14 border-border hover:bg-secondary text-foreground font-medium rounded-xl"
+              >
+                + Cadastrar Novo
+              </Button>
+              <Button
+                onClick={handleStart}
+                className="flex-1 h-14 bg-success hover:bg-success/90 text-white font-semibold rounded-xl shadow-lg shadow-success/20"
+              >
+                Iniciar Inspeção
+              </Button>
+            </div>
           </div>
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="py-4 text-center">
+        <span className="text-xs text-muted-foreground">v1.0.0 — Sistema de Inspeção Visual</span>
+      </footer>
 
       {/* Dialog for registering new model */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>

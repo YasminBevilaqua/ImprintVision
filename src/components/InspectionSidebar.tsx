@@ -5,7 +5,7 @@ const statCards = [
   { label: "Aprovado", value: "9999", className: "bg-[#2A9966]" },
   { label: "Reprovado", value: "9999", className: "bg-[#DC2626]" },
   { label: "Eficiência", value: "9999", className: "bg-[#2A8BD6]" },
-  { label: "Total", value: "9999", className: "bg-[#1A2030]" },
+  { label: "Total", value: "9999", className: "bg-[#E8EBF0] text-[#121826]" },
 ];
 
 const inspections = [

@@ -1,12 +1,13 @@
-import { X } from "lucide-react";
+import { X, Maximize2 } from "lucide-react";
 
 const logos = [
   {
     id: "roi_elgin_logo",
+    label: "Logo Elgin",
     content: (
       <div className="flex h-full items-center justify-center">
         <span
-          className="text-3xl font-extrabold tracking-widest text-primary sm:text-4xl md:text-5xl"
+          className="text-4xl font-bold tracking-widest text-primary sm:text-5xl md:text-6xl"
           style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
         >
           elgin
@@ -16,12 +17,13 @@ const logos = [
   },
   {
     id: "roi_r32_logo",
+    label: "Selo R32",
     content: (
       <div className="relative flex h-full items-center justify-center">
-        <div className="relative flex h-28 w-28 items-center justify-center rounded-full border-[4px] border-primary sm:h-32 sm:w-32 md:h-36 md:w-36">
-          <span className="text-2xl font-extrabold text-primary sm:text-3xl md:text-4xl">R32</span>
+        <div className="relative flex h-32 w-32 items-center justify-center rounded-full border-[3px] border-primary/80 sm:h-36 sm:w-36 md:h-40 md:w-40">
+          <span className="text-3xl font-bold text-primary sm:text-4xl">R32</span>
           <svg
-            className="absolute -right-1 -top-1 h-6 w-6 text-success sm:h-7 sm:w-7"
+            className="absolute -right-1 -top-1 h-7 w-7 text-success sm:h-8 sm:w-8"
             viewBox="0 0 24 24"
             fill="currentColor"
           >
@@ -33,10 +35,11 @@ const logos = [
   },
   {
     id: "roi_inverter_logo",
+    label: "Logo Inverter",
     content: (
-      <div className="flex h-full flex-col items-center justify-center gap-2">
+      <div className="flex h-full flex-col items-center justify-center gap-3">
         <svg
-          className="h-8 w-14 text-primary sm:h-10 sm:w-16"
+          className="h-10 w-16 text-primary sm:h-12 sm:w-20"
           viewBox="0 0 40 24"
           fill="none"
           stroke="currentColor"
@@ -47,7 +50,7 @@ const logos = [
           <path d="M11 16 Q20 8 29 15" />
         </svg>
         <span
-          className="text-xl font-extrabold tracking-wider text-primary sm:text-2xl md:text-3xl"
+          className="text-2xl font-bold tracking-wider text-primary sm:text-3xl"
           style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
         >
           inverter
@@ -60,27 +63,58 @@ const logos = [
 const InspectionMainArea = () => {
   return (
     <div className="flex min-h-screen min-w-0 flex-1 flex-col bg-background">
-      <header className="flex shrink-0 items-center justify-between border-b border-border px-5 py-3">
-        <h2 className="text-[15px] font-semibold text-muted-foreground">
-          Inspeção | Tampa Condensadora - Modelo 9/12K
-        </h2>
-        <button
-          type="button"
-          className="flex h-9 w-9 items-center justify-center rounded-full bg-destructive text-white shadow-sm transition-colors hover:bg-destructive/90"
-          aria-label="Fechar"
-        >
-          <X className="h-4 w-4" strokeWidth={2.5} />
-        </button>
+      {/* Header */}
+      <header className="flex shrink-0 items-center justify-between px-6 py-4">
+        <div className="flex items-center gap-3">
+          <div className="h-2 w-2 rounded-full bg-success animate-pulse" />
+          <h2 className="text-sm font-medium text-foreground">
+            Inspeção em Andamento
+          </h2>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-xs text-muted-foreground hidden sm:inline">
+            Tampa Condensadora - Modelo 9/12K
+          </span>
+          <button
+            type="button"
+            className="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary hover:bg-muted transition-colors"
+            aria-label="Tela Cheia"
+          >
+            <Maximize2 className="h-4 w-4 text-foreground" />
+          </button>
+          <button
+            type="button"
+            className="flex h-8 w-8 items-center justify-center rounded-lg bg-destructive/10 hover:bg-destructive/20 transition-colors"
+            aria-label="Fechar"
+          >
+            <X className="h-4 w-4 text-destructive" />
+          </button>
+        </div>
       </header>
 
-      <main className="flex min-h-0 flex-1 flex-col bg-muted/50 p-4 md:p-6">
-        <div className="flex min-h-0 flex-1 flex-col rounded-xl border border-border bg-card p-6 shadow-lg md:p-10">
-          <div className="flex min-h-0 flex-1 flex-wrap items-center justify-center gap-8 md:gap-12 lg:gap-16">
+      {/* Main Content */}
+      <main className="flex-1 px-6 pb-6">
+        <div className="h-full rounded-2xl bg-card/50 border border-border/50 p-8">
+          <div className="flex h-full flex-wrap items-center justify-center gap-6 md:gap-10">
             {logos.map((logo) => (
-              <div key={logo.id} className="flex flex-col items-center gap-2 md:gap-3">
-                <span className="font-mono text-xs font-medium text-destructive sm:text-sm">{logo.id}</span>
-                <div className="flex min-h-[min(58vh,520px)] w-[clamp(168px,22vw,260px)] items-center justify-center rounded-xl border-2 border-destructive/50 bg-card px-3 py-4 shadow-md sm:min-h-[min(62vh,560px)] sm:w-[clamp(180px,24vw,280px)]">
+              <div 
+                key={logo.id} 
+                className="group relative flex flex-col items-center"
+              >
+                {/* Label */}
+                <span className="mb-3 text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                  {logo.label}
+                </span>
+                
+                {/* Logo Container */}
+                <div className="flex min-h-[min(55vh,480px)] w-[clamp(160px,20vw,240px)] items-center justify-center rounded-2xl bg-background border border-border shadow-xl transition-all duration-300 hover:border-primary/30 hover:shadow-2xl sm:min-h-[min(60vh,520px)] sm:w-[clamp(170px,22vw,260px)]">
                   {logo.content}
+                </div>
+                
+                {/* Status Indicator */}
+                <div className="mt-3 flex items-center gap-2">
+                  <div className="h-1.5 w-1.5 rounded-full bg-success" />
+                  <span className="text-xs text-muted-foreground">Detectado</span>
                 </div>
               </div>
             ))}
@@ -88,13 +122,20 @@ const InspectionMainArea = () => {
         </div>
       </main>
 
-      <footer className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-t border-border px-5 py-2.5 text-[12px] text-muted-foreground">
-        <span>Imprint Vision - Versão 1.0.0</span>
-        <span className="hidden sm:inline font-mono">IP 192.168.0.1</span>
-        <span className="font-mono">Data/Hora 01/01/2026 - 00:00:00</span>
-        <span className="inline-flex items-center gap-1 text-muted-foreground">
-          Status <span className="font-medium text-success">Online</span>
-        </span>
+      {/* Footer */}
+      <footer className="flex shrink-0 items-center justify-between px-6 py-3 text-xs text-muted-foreground">
+        <div className="flex items-center gap-4">
+          <span className="font-medium text-foreground">IMPRINT VISION</span>
+          <span className="hidden sm:inline">v1.0.0</span>
+        </div>
+        <div className="flex items-center gap-4">
+          <span className="font-mono hidden sm:inline">192.168.0.1</span>
+          <span className="font-mono">{new Date().toLocaleString('pt-BR')}</span>
+          <span className="inline-flex items-center gap-1.5">
+            <div className="h-1.5 w-1.5 rounded-full bg-success" />
+            Online
+          </span>
+        </div>
       </footer>
     </div>
   );
